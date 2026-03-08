@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <style>
+        #contractAgreement {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            white-space: pre-wrap;
+            /* Makes line breaks in the contract text visible */
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Register Doctor</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form lass="forms-sample" method="POST" action="{% url 'save_doctor' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Hospital<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Doc_Hospital">
+                                    <option>-- Select --</option>
+                                    {% for s in hospital_data %}
+                                    <option>{{s.HosName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Doc_Department">
+                                    <option>-- Select --</option>
+                                    {% for s in data_department %}
+                                    <option>{{s.DepName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Doctor Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Doc_Name" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Avatar<span class="text-danger">*</span></label>
+                                <div class="profile-upload">
+                                    <div class="upload-img">
+                                        <img alt="" src="{% static 'adminback/assets/img/user.jpg' %}">
+                                    </div>
+                                    <div class="upload-input">
+                                        <input type="file" class="form-control" name="Doc_Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email <span class="text-danger">*</span></label>
+                                <input class="form-control" type="email" name="Doc_Email" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Phone <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Doc_Phone" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Age<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control " name="Doc_Age" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Gender<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Doc_Gender" required>
+                                    <option>-- Select --</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Country<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control " name="Doc_Country" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Additional form fields for the user (like bio or other details) -->
+                    <div class="form-group">
+                        <label for="userBio">Your Bio <span class="text-danger">*</span></label>
+                        <textarea id="userBio" class="form-control" name="Doc_Bio" rows="3"
+                            placeholder="Enter your bio here" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contractAgreement">Contract Agreement <span class="text-danger">*</span></label>
+                        <!-- Read-only textarea with contract terms displayed -->
+                        <textarea id="contractAgreement" class="form-control" rows="10" readonly>
+                                                                                                        CONTRACT AGREEMENT
+                    
+                    By submitting this form, you agree to the following terms and conditions:
+                    
+                    1. **Accuracy of Information**  
+                       You agree to provide accurate, truthful, and complete information in this form to the best of your ability.
+                    
+                    2. **Privacy and Data Handling**  
+                       We are committed to safeguarding your personal data. The information you provide will be used in accordance with our privacy policy and will not be 
+                       shared with third parties without your explicit consent.
+                    
+                    3. **Liability**  
+                       We are not responsible for any direct or indirect consequences arising from the information provided in this form or from actions taken based on this 
+                       submission.
+                    
+                    4. **Right to Modify or Terminate**  
+                       You retain the right to withdraw or modify the information at any time by contacting us. We may also modify or terminate this agreement as necessary, 
+                       with prior notice.
+                    
+                    5. **Agreement Confirmation**  
+                       By checking the box and submitting the form, you acknowledge that you have read, understood, and agree to the terms outlined above.
+                        </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <!-- User must check this box to confirm agreement -->
+                            <input type="checkbox" class="form-check-input" id="agreeToTerms" name="D_contract"
+                                value="True">
+                            <label class="form-check-label" for="agreeToTerms">
+                                I have read and agree to the terms and conditions above.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn">Create
+                            Doctor</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-primary submit-btn"><a href="#" style="color: #ffff
+                        ;">Send Mail</a></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'success' %}
+<script>
+    swal('{{i}}', '', 'success');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}', '', 'error');
+</script>
+{% elif i.tags == 'warning' %}
+<script>
+    swal('{{i}}', '', 'warning');
+</script>
+{% elif i.tags == 'info' %}
+<script>
+    swal('{{i}}', '', 'info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+</html>
+{% endblock %}

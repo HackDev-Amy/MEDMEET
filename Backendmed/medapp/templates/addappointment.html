@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Add Appointment</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form lass="forms-sample" method="POST" action="{% url 'save_appointment' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <!-- Country Dropdown -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Country<span class="text-danger">*</span></label>
+                                <select class="form-control" name="country" id="country-dropdown">
+                                    <option>-- Select --</option>
+                                    {% for C in country_appoint %}
+                                    <option value="{{ C.CON_name }}">{{ C.CON_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Hospital Dropdown -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Hospital<span class="text-danger">*</span></label>
+                                <select class="form-control" name="hospital" id="hospital-dropdown">
+                                    <option>-- Select --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Department Dropdown -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department<span class="text-danger">*</span></label>
+                                <select class="form-control" id="department-dropdown" name="department">
+                                    <option>-- Select --</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Doctor Dropdown -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Doctors<span class="text-danger">*</span></label>
+                                <select class="form-control" id="doctor-dropdown" name="doctor">
+                                    <option>-- Select --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Appointment Number <span class="text-danger">*</span></label>
+                                <input class="form-control" type="number" name="appointnumber">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="patientname">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Phone Number <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="mobileno">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Gender<span class="text-danger">*</span></label>
+                                <select class="form-control" name="gnederpatient">
+                                    <option>-- Select --</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Blood Group<span class="text-danger">*</span></label>
+                                <select class="form-control" name="bloodgroup">
+                                    <option>-- Select --</option>
+                                    <option>O+</option>
+                                    <option>O-</option>
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>AB+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Do you have Diabeties<span class="text-danger">*</span></label>
+                                <select class="form-control" name="diabeties">
+                                    <option>-- Select --</option>
+                                    <option>YES</option>
+                                    <option>NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Timings<span class="text-danger">*</span></label>
+                                <input type="datetime-local" id="publish-date" class="form-control" name="Time">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn">Create Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Trigger the Ajax call when the country is selected
+        $('#country-dropdown').on('change', function () {
+            const countrycategory = $(this).val();  // Get the selected country
+
+            if (countrycategory) {
+                $.ajax({
+                    url: "{% url 'get_hospital_by_Country' %}",
+                    data: { 'country_category': countrycategory },
+                    method: "GET",
+                    success: function (data) {
+                        let hospitalDropdown = $('#hospital-dropdown');
+                        hospitalDropdown.empty();  // Clear existing options
+                        hospitalDropdown.append('<option>-- Select --</option>');  // Add default option
+
+                        // Add the options dynamically
+                        $.each(data, function (index, hospital) {
+                            hospitalDropdown.append(`<option value="${hospital.HosName}">${hospital.HosName}</option>`);
+                        });
+                    }
+                });
+            }
+        });
+
+
+        // Trigger the Ajax call when the hospital is selected
+        $('#hospital-dropdown').on('change', function () {
+            const hospitalName = $(this).val();  // Get the selected hospital
+            if (hospitalName) {
+                $.ajax({
+                    url: "{% url 'get_departments' %}",
+                    data: { 'hospital_name': hospitalName },
+                    method: "GET",
+                    success: function (data) {
+                        let departmentDropdown = $('#department-dropdown');
+                        departmentDropdown.empty();  // Clear existing options
+                        departmentDropdown.append('<option>-- Select --</option>');  // Add default option
+
+                        // Add the options dynamically
+                        $.each(data.departments, function (index, department) {
+                            departmentDropdown.append(`<option value="${department}">${department}</option>`);
+                        });
+                    }
+                });
+            }
+        });
+
+        $('#department-dropdown').on('change', function () {
+            const hospitalName = $('#hospital-dropdown').val();  // Get the selected hospital
+            const departmentName = $(this).val();  // Get the selected department
+
+            if (hospitalName && departmentName) {
+                $.ajax({
+                    url: "{% url 'get_doctors' %}",
+                    data: {
+                        'hospital_name': hospitalName,
+                        'department_name': departmentName
+                    },
+                    method: "GET",
+                    success: function (data) {
+                        let doctorDropdown = $('#doctor-dropdown');
+                        doctorDropdown.empty();  // Clear existing options
+                        doctorDropdown.append('<option>-- Select --</option>');  // Add default option
+
+                        // Add the options dynamically
+                        $.each(data.doctors, function (index, doctor) {
+                            doctorDropdown.append(`<option value="${doctor.D_name}">${doctor.D_name}</option>`);
+                        });
+                    },
+                    error: function () {
+                        alert('Failed to fetch doctors.');
+                    }
+                });
+            } else {
+                alert('Please select both hospital and department.');
+            }
+        });
+
+    });
+
+
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'success' %}
+<script>
+    swal('{{i}}', '', 'success');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}', '', 'error');
+</script>
+{% elif i.tags == 'warning' %}
+<script>
+    swal('{{i}}', '', 'warning');
+</script>
+{% elif i.tags == 'info' %}
+<script>
+    swal('{{i}}', '', 'info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+</html>
+{% endblock %}

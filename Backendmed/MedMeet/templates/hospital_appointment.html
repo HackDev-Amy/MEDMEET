@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Hospital Appointment</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'adminfront/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/jquery.timepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/style.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Med_Meet' %}">MED<span>MEET</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="{% url 'Med_Meet' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'Hospital_med' %}" class="nav-link">Hospitals</a></li>
+                    <li class="nav-item"><a href="{% url 'Blog_med' %}" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="{% url 'Contacts_med' %}" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home-slider owl-carousel">
+        <div class="slider-item bread-item" style="background-image: url('{% static 'adminfront/images/bg_1.jpg' %}');"
+            data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container" data-scrollax-parent="true">
+                <div class="row slider-text align-items-end">
+                    <div class="col-md-8 col-sm-12 ftco-animate mb-5">
+                        <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}">
+                            <span class="mr-2"><a href="{% url 'Med_Meet' %}">Home</a></span>*
+                            <span class="mr-2"><a href="{% url 'Hospital_med' %}">Hospitals</a></span>*
+                            <span>Appointment</span>
+                        </p>
+                        <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">BOOK APPOINTMENT</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="bg-light p-4 p-md-5 rounded">
+                        <h3 class="mb-4">Appointment for {{ selected_hospital.HosName }}</h3>
+                        <form action="{% url 'Hospital_appointment' hospital_id=selected_hospital.id %}" method="POST">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label>Hospital</label>
+                                <input type="text" class="form-control" value="{{ selected_hospital.HosName }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control" value="{{ selected_hospital.HosCountry }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Department</label>
+                                <select class="form-control" id="department-dropdown" name="department" required>
+                                    <option value="">Select Department</option>
+                                    {% for department in departments %}
+                                    <option value="{{ department }}">{{ department }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Doctor</label>
+                                <select class="form-control" id="doctor-dropdown" name="doctor" required>
+                                    <option value="">Select Doctor</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" name="appoint_name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="appoint_email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Date & Time</label>
+                                <input type="datetime-local" class="form-control" name="datetimes" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-control" rows="4" name="message" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary py-2 px-4">Submit Appointment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | MEDMEET</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#department-dropdown').on('change', function () {
+                const departmentName = $(this).val();
+                const hospitalName = '{{ selected_hospital.HosName|escapejs }}';
+
+                if (departmentName) {
+                    $.ajax({
+                        url: "{% url 'get_doctors' %}",
+                        data: {
+                            'hospital_name': hospitalName,
+                            'department_name': departmentName
+                        },
+                        method: "GET",
+                        success: function (data) {
+                            let doctorDropdown = $('#doctor-dropdown');
+                            doctorDropdown.empty();
+                            doctorDropdown.append('<option value="">Select Doctor</option>');
+
+                            $.each(data.doctors, function (index, doctor) {
+                                doctorDropdown.append(`<option value="${doctor.D_name}">${doctor.D_name}</option>`);
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script src="{% static 'adminfront/js/jquery.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/popper.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/aos.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/scrollax.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>MEDMEET-A COMPLETE HOSPITAL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/jquery.timepicker.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/style.css' %}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Med_Meet' %}">MED<span>MEET</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{% url 'Med_Meet' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item "><a href="{% url 'About_med' %}" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="{% url 'Blog_med' %}" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="{% url 'Contacts_med' %}" class="nav-link">Contact</a></li>
+                </ul>
+                <!-- -------------------login icon --------------- -->
+                <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                    <li><a class="nav-link" href="#"><img src="{% static 'adminfront/images/user.svg' %}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <section class="home-slider owl-carousel">
+        <div class="slider-item bread-item" style="background-image: url('{% static 'adminfront/images/bg_1.jpg' %}');"
+            data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container" data-scrollax-parent="true">
+                <div class="row slider-text align-items-end">
+                    <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                        <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span
+                                class="mr-2"><a href="{% url 'Med_Meet' %}">Home</a></span>* <span>Checkout</span></p>
+                        <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">MED PHARMACY
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br><br>
+
+    <section>
+        <div class="site-section">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <div class="bg-light rounded p-3">
+                            <p class="mb-0">Returning customer? <a href="{% url 'otp_login' %}"
+                                    class="d-inline-block">Click here</a> to
+                                login</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-5 mb-md-0">
+                        <h2 class="h3 mb-3 text-black">Billing Details</h2>
+                        <div class="p-3 p-lg-5 border">
+                            <div class="form-group">
+                                <label for="c_country" class="text-black">Country <span
+                                        class="text-danger">*</span></label>
+                                <select id="c_country" class="form-control">
+                                    <option value="1">Select a country</option>
+                                    {% for c in country_data %}
+                                    <option value="2">{{c.CON_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_fname" class="text-black">Name <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="c_fname" class="text-black">Delivery Address <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="c_fname" class="text-black">Mobile <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="c_fname" class="text-black">Email <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="c_ship_different_address" class="text-black" data-toggle="collapse"
+                                    href="#ship_different_address" role="button" aria-expanded="false"
+                                    aria-controls="ship_different_address"><input type="checkbox" value="1"
+                                        id="c_ship_different_address">
+                                    Ship To A Different Address?</label>
+                                <div class="collapse" id="ship_different_address">
+                                    <div class="py-2">
+
+                                        <div class="form-group">
+                                            <label for="c_diff_country" class="text-black">Country <span
+                                                    class="text-danger">*</span></label>
+                                            <select id="c_diff_country" class="form-control">
+                                                <option value="1">Select a country</option>
+                                                <option value="2">bangladesh</option>
+                                                <option value="3">Algeria</option>
+                                                <option value="4">Afghanistan</option>
+                                                <option value="5">Ghana</option>
+                                                <option value="6">Albania</option>
+                                                <option value="7">Bahrain</option>
+                                                <option value="8">Colombia</option>
+                                                <option value="9">Dominican Republic</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <label for="c_fname" class="text-black">Name <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="c_fname" class="text-black">Delivery Address <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="c_fname" class="text-black">Mobile <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="c_fname" class="text-black">Email <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="c_order_notes" class="text-black">Order Notes</label>
+                                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5"
+                                    class="form-control" placeholder="Write your notes here..."></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-5">
+                            <div class="col-md-12">
+                                <h2 class="h3 mb-3 text-black">Your Order</h2>
+                                <div class="p-3 p-lg-5 border">
+                                    <table class="table site-block-order-table mb-5">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Paracetamol- 500 mg<strong class="mx-2">x</strong> 1</td>
+                                                <td>$5.99</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong>
+                                                </td>
+                                                <td class="text-black">$5.99</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-black font-weight-bold"><strong>Coupons</strong>
+                                                </td>
+                                                <td class="text-black">$0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-black font-weight-bold"><strong>Order Total</strong>
+                                                </td>
+                                                <td class="text-black font-weight-bold"><strong>$5.99</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="border mb-3">
+                                        <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse"
+                                                href="#collapsebank" role="button" aria-expanded="false"
+                                                aria-controls="collapsebank">Direct Bank Transfer</a></h3>
+
+                                        <div class="collapse" id="collapsebank">
+                                            <div class="py-2 px-4">
+                                                <p class="mb-0">Make your payment directly into our bank account. Please
+                                                    use your Order ID as the
+                                                    payment reference. Your order won’t be shipped until the funds have
+                                                    cleared in our account.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="border mb-3">
+                                        <h3 class="h6 mb-0"><a class="d-block collapsed" data-toggle="collapse"
+                                                href="#collapsecheque" role="button" aria-expanded="false"
+                                                aria-controls="collapsecheque">Cheque Payment</a></h3>
+
+                                        <div class="collapse" id="collapsecheque" style="">
+                                            <div class="py-2 px-4">
+                                                <p class="mb-0">Make your payment directly into our bank account. Please
+                                                    use your Order ID as the
+                                                    payment reference. Your order won’t be shipped until the funds have
+                                                    cleared in our account.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="border mb-5">
+                                        <h3 class="h6 mb-0"><a class="d-block collapsed" data-toggle="collapse"
+                                                href="#collapsepaypal" role="button" aria-expanded="false"
+                                                aria-controls="collapsepaypal">Paypal</a></h3>
+
+                                        <div class="collapse" id="collapsepaypal">
+                                            <div class="py-2 px-4">
+                                                <p class="mb-0">Make your payment directly into our bank account. Please
+                                                    use your Order ID as the
+                                                    payment reference. Your order won’t be shipped until the funds have
+                                                    cleared in our account.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <a href="{% url 'thank_med' %}" class="btn btn-primary btn-lg btn-block">Place Order</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- </form> -->
+            </div>
+        </div>
+    </section> <br><br>
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | MEDMEET
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+    <!-- Modal -->
+
+
+    <script src="{% static 'adminfront/js/jquery.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/popper.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/aos.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/scrollax.min.js' %}"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'adminfront/js/google-map.js' %}"></script>
+    <script src="{% static 'adminfront/js/main.js' %}"></script>
+
+</body>
+
+</html>

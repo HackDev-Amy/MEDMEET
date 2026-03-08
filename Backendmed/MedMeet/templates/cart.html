@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>MEDMEET-A COMPLETE HOSPITAL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/jquery.timepicker.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/style.css' %}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Med_Meet' %}">MED<span>MEET</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{% url 'Med_Meet' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item "><a href="{% url 'About_med' %}" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="{% url 'Blog_med' %}" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="{% url 'Contacts_med' %}" class="nav-link">Contact</a></li>
+                </ul>
+                <!-- -------------------login icon --------------- -->
+                <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                    <li><a class="nav-link" href="#"><img src="{% static 'adminfront/images/user.svg' %}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <section class="home-slider owl-carousel">
+        <div class="slider-item bread-item" style="background-image: url('{% static 'adminfront/images/bg_1.jpg' %}');"
+            data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container" data-scrollax-parent="true">
+                <div class="row slider-text align-items-end">
+                    <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                        <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span
+                                class="mr-2"><a href="{% url 'Med_Meet' %}">Home</a></span>* <span><a href="{% url 'Pharmacy_med' %}"></a>Pharmacy</span> * <span>Cart</span></p>
+                        <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">MED PHARMACY
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br><br>
+
+    <section>
+        <div class="site-section">
+            <div class="container">
+                <div class="row mb-5">
+                    <form class="col-md-12" method="post">
+                        <div class="site-blocks-table">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">Image</th>
+                                        <th class="product-name">Product</th>
+                                        <th class="product-price">Price</th>
+                                        <th class="product-quantity">Quantity</th>
+                                        <th class="product-total">Total</th>
+                                        <th class="product-remove">Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="{% static 'adminfront/images/Paracetamol.jpg' %}" alt="Image" height="100px" width="100px">
+                                        </td>
+                                        <td class="product-name">
+                                            <h2 class="h5 text-black">Paracetamol- 500 mg</h2>
+                                        </td>
+                                        <td>$5.99</td>
+                                        <td>1</td>
+                                        <td>$5.99</td>
+                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row mb-5">
+                            <!-- <div class="col-md-6 mb-3 mb-md-0">
+                                <button cxlass="btn btn-primary btn-md btn-block">Update Cart</button>
+                            </div> -->
+                            <div class="col-md-6">
+                                <button class="btn btn-outline-primary btn-md btn-block">Continue Shopping</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="text-black h4" for="coupon">Coupon</label>
+                                <p>Enter your coupon code if you have one.</p>
+                            </div>
+                            <div class="col-md-8 mb-3 mb-md-0">
+                                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-primary btn-md px-4">Apply Coupon</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-5">
+                        <div class="row justify-content-end">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-12 text-right border-bottom mb-5">
+                                        <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <span class="text-black">Subtotal</span>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <strong class="text-black">$5.99</strong>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <span class="text-black">Coupon Discount</span>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <strong class="text-black">$0.00</strong>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-md-6">
+                                        <span class="text-black">Total</span>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <strong class="text-black">$5.99</strong>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="{% url 'Checkout_med' %}" class="btn btn-primary btn-lg btn-block">Proceed to Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br><br>
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | MEDMEET
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+    <!-- Modal -->
+
+
+    <script src="{% static 'adminfront/js/jquery.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/popper.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/aos.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/scrollax.min.js' %}"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'adminfront/js/google-map.js' %}"></script>
+    <script src="{% static 'adminfront/js/main.js' %}"></script>
+
+</body>
+
+</html>

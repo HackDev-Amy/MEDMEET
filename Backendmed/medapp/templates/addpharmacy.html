@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Add Medicine</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form class="forms-sample" method="POST" action="{% url 'save_medicine' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Medicine Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Mname">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Image </label>
+                                <div class="profile-upload">
+                                    <div class="upload-img">
+                                        <img alt="" src="{% static 'adminback/assets/img/user.jpg' %}">
+                                    </div>
+                                    <div class="upload-input">
+                                        <input type="file" class="form-control" name="Mimage">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Price <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Mprice">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Quantity <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Mqty">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Manufactured by <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Manufac">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userBio">Uses<span class="text-danger">*</span></label>
+                        <textarea id="userBio" class="form-control" name="Muses" rows="3"
+                             required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="userBio">Side effects <span class="text-danger">*</span></label>
+                        <textarea id="userBio" class="form-control" name="Mside" rows="3"
+                             required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="userBio">Description <span class="text-danger">*</span></label>
+                        <textarea id="userBio" class="form-control" name="Mdesc" rows="3"
+                             required></textarea>
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'success' %}
+<script>
+    swal('{{i}}', '', 'success');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}', '', 'error');
+</script>
+{% elif i.tags == 'warning' %}
+<script>
+    swal('{{i}}', '', 'warning');
+</script>
+{% elif i.tags == 'info' %}
+<script>
+    swal('{{i}}', '', 'info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+</html>
+{% endblock %}

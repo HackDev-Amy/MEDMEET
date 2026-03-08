@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+
+<!-- login23:11-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'adminback/assets/img/logo2.png' %}">
+
+    <title>MedMeet</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'adminback/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminback/assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminback/assets/css/style.css' %}">
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+    <div class="main-wrapper account-wrapper">
+        <div class="account-page">
+            <div class="account-center">
+                <div class="account-box">
+                    <form action="{% url 'admin_login2' %}" class="form-signin" method="post">
+                        {% csrf_token %}
+                        <div class="account-logo">
+                            <a href="index-2.html"><img src="{% static 'adminback/assets/img/logo3.png' %}" alt=""></a>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" autofocus="" class="form-control" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="pass">
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary account-btn">Login</button>
+                        </div>
+                        <div class="text-center register-link">
+                            Don’t have an account? <a href="#" data-toggle="modal" data-target="#exampleModal">Contact
+                                Admin</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Admin Email</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <a href="mailto:amiameen.anver@gmail.com">amiameen.anver@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'adminback/assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'adminback/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'adminback/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'adminback/assets/js/app.js' %}"></script>
+
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+<!-- login23:12-->
+
+</html>

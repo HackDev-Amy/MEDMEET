@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-4 col-3">
+            <h4 class="page-title" style="font-size: 25px;">Pharmacy</h4>
+        </div>
+        <div class="col-sm-8 col-9 text-right m-b-20">
+            <a href="{% url 'add_medicine' %}" class="btn btn btn-primary btn-rounded float-right"><i
+                    class="fa fa-plus"></i>
+                Add Medicine</a>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="card-box">
+            <div class="card-block">
+                <h5 class="text-bold card-title">Medicine List</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Uses</th>
+                                <th>Side effects</th>
+                                <th>Description</th>
+                                <th>Manufactured by </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in Pharmacy_data %}
+                            <tr>
+                                <td>{{p.Medname}}</td>
+                                <td>
+                                    {% if p.Medimage %}
+                                    <img src="{{p.Medimage.url}}" alt="" width="120px" height="90px">
+                                    {% else %}
+                                    <span style="color: #999;">No image</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{p.Medprice}}</td>
+                                <td>{{p.Medqty}}</td>
+                                <td>{{p.Meduses}}</td>
+                                <td>{{p.Medside}}</td>
+                                <td>{{p.Meddesc}}</td>
+                                <td>{{p.Medmanufacture}}</td>
+                                <td><a class="btn btn-sm btn-danger"
+                                        href="{% url 'delete_pharmacy' del_id=p.id %}">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

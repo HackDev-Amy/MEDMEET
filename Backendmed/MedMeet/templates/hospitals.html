@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>MEDMEET-A COMPLETE HOSPITAL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/jquery.timepicker.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/style.css' %}">
+    <style>
+        /* From Uiverse.io by 0xnihilism */
+        .brutalist-card {
+            width: 520px;
+            border: 4px solid #000;
+            background-color: #fff;
+            padding: 1.5rem;
+            box-shadow: 10px 10px 0 #000;
+            font-family: "Arial", sans-serif;
+            height: 420px;
+        }
+
+        .brutalist-card__header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 1rem;
+        }
+
+        .brutalist-card__icon {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            padding: 0.5rem;
+        }
+
+        .brutalist-card__icon svg {
+            height: 1.5rem;
+            width: 1.5rem;
+            fill: #fff;
+        }
+
+        .brutalist-card__alert {
+            font-weight: 900;
+            color: #000;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .brutalist-card__message {
+            margin-top: 1rem;
+            color: #000;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            border-bottom: 2px solid #000;
+            padding-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .brutalist-card__actions {
+            margin-top: 1rem;
+        }
+
+        .brutalist-card__button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 3px solid #000;
+            background-color: #fff;
+            color: #000;
+            position: relative;
+            transition: all 0.2s ease;
+            box-shadow: 5px 5px 0 #000;
+            overflow: hidden;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .brutalist-card__button--read {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .brutalist-card__button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.3),
+                    transparent);
+            transition: all 0.6s;
+        }
+
+        .brutalist-card__button:hover::before {
+            left: 100%;
+        }
+
+        .brutalist-card__button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #000;
+        }
+
+        .brutalist-card__button--mark:hover {
+            background-color: #296fbb;
+            border-color: #296fbb;
+            color: #fff;
+            box-shadow: 7px 7px 0 #004280;
+        }
+
+        .brutalist-card__button--read:hover {
+            background-color: #ff0000;
+            border-color: #ff0000;
+            color: #fff;
+            box-shadow: 7px 7px 0 #800000;
+        }
+
+        .brutalist-card__button:active {
+            transform: translate(5px, 5px);
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body
+    style=" width: 100%; height: 100%; background-image: linear-gradient(#ffffff 1.1rem, #ccc 1.2rem); background-size: 100% 1.2rem;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Med_Meet' %}">MED<span>MEET</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{% url 'Med_Meet' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item "><a href="{% url 'About_med' %}" class="nav-link">About</a></li>
+                    <li class="nav-item "><a href="{% url 'Blog_med' %}" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="{% url 'Contacts_med' %}" class="nav-link">Contact</a></li>
+                </ul>
+                <!-- -------------------login icon --------------- -->
+                <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                    <li><a class="nav-link" href="#"><img src="{% static 'adminfront/images/user.svg' %}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <section class="home-slider owl-carousel">
+        <div class="slider-item bread-item" style="background-image: url('{% static 'adminfront/images/bg_1.jpg' %}');"
+            data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container" data-scrollax-parent="true">
+                <div class="row slider-text align-items-end">
+                    <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                        <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span
+                                class="mr-2"><a href="{% url 'Med_Meet' %}">Home</a></span>* <span>Hospitals</span></p>
+                        <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">OUR HOSPITALS
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br><br>
+
+
+    <div class="blog-section" style="margin-left: 40px;">
+        <div class="row">
+            {% for data in hospital_profile %}
+            <div class="col-md-4 mb-4"> <!-- This makes 3 cards per row on medium and larger screens -->
+                <div class="brutalist-card">
+                    <div class="brutalist-card__header">
+                        <div class="brutalist-card__icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="brutalist-card__alert">{{data.HosName}}, {{data.HosCountry}}</div>
+                    </div>
+                    <div class="brutalist-card__message">
+                        <h5 style="text-align: center;">Email: {{data.HosEmail}}</h5>
+                        <h5 style="text-align: center;">Phone: {{data.HosNumber}}</h5>
+                        <h5 style="text-align: center;">Website: {{data.HosWebsite}}</h5>
+                    </div>
+                    <a class="brutalist-card__button brutalist-card__button--read" href="{% url 'Hospital_appointment' hospital_id=data.id %}">BOOK APPOINTMENT</a>
+                </div>
+            </div><br>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | MEDMEET
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+    <!-- Modal -->
+
+
+    <script src="{% static 'adminfront/js/jquery.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/popper.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/aos.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/scrollax.min.js' %}"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'adminfront/js/google-map.js' %}"></script>
+    <script src="{% static 'adminfront/js/main.js' %}"></script>
+
+</body>
+
+</html>

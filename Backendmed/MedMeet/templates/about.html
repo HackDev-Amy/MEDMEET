@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>MEDMEET-A COMPLETE HOSPITAL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/jquery.timepicker.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/style.css' %}">
+</head>
+
+<body style=" width: 100%; height: 100%; background-image: linear-gradient(#ffffff 1.1rem, #ccc 1.2rem); background-size: 100% 1.2rem;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Med_Meet' %}">MED<span>MEET</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{% url 'Med_Meet' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item  active"><a href="{% url 'About_med' %}" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="{% url 'Blog_med' %}" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="{% url 'Contacts_med' %}" class="nav-link">Contact</a></li>
+                </ul>
+                <!-- -------------------login icon --------------- -->
+                <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                    <li><a class="nav-link" href="#"><img src="{% static 'adminfront/images/user.svg' %}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <section class="home-slider owl-carousel">
+        <div class="slider-item bread-item" style="background-image: url('{% static 'adminfront/images/bg_1.jpg' %}');"
+            data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container" data-scrollax-parent="true">
+                <div class="row slider-text align-items-end">
+                    <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                        <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span
+                                class="mr-2"><a href="{% url 'Med_Meet' %}">Home</a></span>* <span>About</span></p>
+                        <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">About Us</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row d-md-flex">
+                <div class="col-md-6 d-flex">
+                    <div class="about-wrap">
+                        <div class="list-services d-flex ftco-animate">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="icon-check2"></span>
+                            </div>
+                            <div class="text">
+                                <h3>Well Experience Doctors</h3>
+                                    - "Trusted Health Services from Well-Experienced Doctors"<br>
+                                    - "Skilled and Experienced Doctors for a Healthier You"<br>
+                                    - "Compassionate and Experienced Medical Experts at Your Service"</p>
+                            </div>
+                        </div>
+                        <div class="list-services d-flex ftco-animate">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="icon-check2"></span>
+                            </div>
+                            <div class="text">
+                                <h3>High Technology Facilities</h3>
+                                <p> - "State-of-the-Art Facilities for Advanced Medical Care"<br>
+                                    - "Cutting-Edge Technology for Exceptional Patient Outcomes"<br>
+                                    - "Modern Facilities Equipped with the Latest Medical Innovations"</p>
+                            </div>
+                        </div>
+                        <div class="list-services d-flex ftco-animate">
+                            <div class="icon d-flex justify-content-center align-items-center">
+                                <span class="icon-check2"></span>
+                            </div>
+                            <div class="text">
+                                <h3>Comfortable Clinics</h3>
+                                <p> - "Warm and Welcoming Clinics and Hospitals for Your Comfort"<br>
+                                    - "Experience the Art of Healing in Our Comfortable and Caring Environment"<br>
+                                    - "State-of-the-Art Clinics and Hospitals Designed for Your Comfort and Well-being"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="col-md-6 ftco-animate pr-md-5 order-md-first">
+                    <div class="row">
+                        <div class="col-md-12 nav-link-wrap mb-5">
+                            <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist"
+                                aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-whatwedo-tab" data-toggle="pill"
+                                    href="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo"
+                                    aria-selected="true">What we do</a>
+
+                                <a class="nav-link" id="v-pills-mission-tab" data-toggle="pill" href="#v-pills-mission"
+                                    role="tab" aria-controls="v-pills-mission" aria-selected="false">Our mission</a>
+
+                                <a class="nav-link" id="v-pills-goal-tab" data-toggle="pill" href="#v-pills-goal"
+                                    role="tab" aria-controls="v-pills-goal" aria-selected="false">Our goal</a>
+                            </div>
+                        </div>
+                        <div class="col-md-12 d-flex align-items-center">
+
+                            <div class="tab-content ftco-animate" id="v-pills-tabContent">
+
+                                <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel"
+                                    aria-labelledby="v-pills-whatwedo-tab">
+                                    <div>
+                                        <h2 class="mb-4">We Offer High Quality Services</h2>
+                                        <p>"At MEDMEET, we are committed to providing high-quality services that
+                                            cater to all your hospital booking needs. Our platform offers a seamless and
+                                            user-friendly experience, allowing you to search, compare, and book
+                                            appointments with top-rated hospitals and medical professionals. With our
+                                            advanced technology and dedicated customer support team,
+                                        </p>
+                                        <p>We ensure that your
+                                            hospital booking experience is convenient, efficient, and hassle-free.
+                                            Whether you're looking for routine check-ups, specialized treatments, or
+                                            emergency care, we've got you covered. Trust us to deliver exceptional
+                                            service and support every step of the way."</p>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-mission" role="tabpanel"
+                                    aria-labelledby="v-pills-mission-tab">
+                                    <div>
+                                        <h2 class="mb-4">To Accomodate All Patients</h2>
+                                        <p>"At MEDMEET, we believe that every individual deserves access to
+                                            quality healthcare, regardless of their background, location, or financial
+                                            situation. That's why we strive to accommodate all patients, providing a
+                                            platform that is inclusive, user-friendly, and accessible to everyone.
+                                            Whether you're a local resident, an international patient, or someone with
+                                            specific medical needs,
+                                        </p>
+                                        <p>We've designed our hospital booking system to cater
+                                            to your unique requirements. With a wide network of partner hospitals and
+                                            medical professionals, we're confident that we can provide you with the care
+                                            and attention you deserve, whenever and wherever you need it."</p>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-goal" role="tabpanel"
+                                    aria-labelledby="v-pills-goal-tab">
+                                    <div>
+                                        <h2 class="mb-4">Help Our Customers Needs</h2>
+                                        <p>"At MEDMEET, we understand that every patient's needs are unique and
+                                            that navigating the healthcare system can be overwhelming. That's why our
+                                            dedicated team is committed to providing personalized support and guidance
+                                            to help our customers find the right medical care for their specific needs.
+                                            Whether you're looking for a specialist, need help with insurance, or
+                                            require assistance with booking an appointment,
+                                        </p>
+                                        <p> We're here to listen,
+                                            advise, and support you every step of the way. Our goal is to empower you
+                                            with the information and resources you need to make informed decisions about
+                                            your healthcare, and to ensure that you receive the best possible care."</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section testimony-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+                    <h2 class="mb-2">TESTIMONY</h2>
+                    <span class="subheading">Our Happy Customer Says</span>
+                </div>
+            </div>
+            <div class="row justify-content-center ftco-animate">
+                <div class="col-md-8">
+                    <div class="carousel-testimony owl-carousel ftco-owl">
+                        <div class="item">
+                            <div class="testimony-wrap p-4 pb-5">
+                                <div class="user-img mb-5"
+                                    style="background-image: url('{% static 'adminfront/images/person_1.jpg' %}')">
+                                    <span class="quote d-flex align-items-center justify-content-center">
+                                        <i class="icon-quote-left"></i>
+                                    </span>
+                                </div>
+                                <div class="text text-center">
+                                    <p class="mb-5">"I was a bit skeptical about booking a medical appointment online,
+                                        but I'm so glad I gave it a try! The website was easy to navigate and the staff
+                                        were very helpful when I had a question. My only suggestion would be to add more
+                                        doctors to the platform, as I had to wait a few days for an appointment.
+                                        Overall, I'm very happy with the service!"</p>
+                                    <p class="name">Dennis Green</p>
+                                    <span class="position">U.S.A</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap p-4 pb-5">
+                                <div class="user-img mb-5"
+                                    style="background-image: url('{% static 'adminfront/images/person_3.jpg' %}')">
+                                    <span class="quote d-flex align-items-center justify-content-center">
+                                        <i class="icon-quote-left"></i>
+                                    </span>
+                                </div>
+                                <div class="text text-center">
+                                    <p class="mb-5">"I've been using this website for a few months now and I have to
+                                        say, it's been a game-changer! I can book appointments at any time, from
+                                        anywhere, and the reminders are super helpful. The doctors I've seen through the
+                                        platform have all been excellent and I've been really impressed with the level
+                                        of care. I highly recommend this website to anyone looking for a convenient and
+                                        reliable way to book medical appointments!"</p>
+                                    <p class="name">Jose</p>
+                                    <span class="position">INDIA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap p-4 pb-5">
+                                <div class="user-img mb-5"
+                                    style="background-image: url('{% static 'adminfront/images/person_1.jpg' %}')">
+                                    <span class="quote d-flex align-items-center justify-content-center">
+                                        <i class="icon-quote-left"></i>
+                                    </span>
+                                </div>
+                                <div class="text text-center">
+                                    <p class="mb-5">"I was blown away by how easy it was to book an appointment with my
+                                        doctor through this website! The interface is so user-friendly and the process
+                                        was seamless. I was able to get an appointment for the same day, which was
+                                        amazing. I highly recommend this website to anyone looking to book medical
+                                        appointments online!"</p>
+                                    <p class="name">Emil George</p>
+                                    <span class="position">AUSTRALIA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap p-4 pb-5">
+                                <div class="user-img mb-5"
+                                    style="background-image: url('{% static 'adminfront/images/person_1.jpg' %}')">
+                                    <span class="quote d-flex align-items-center justify-content-center">
+                                        <i class="icon-quote-left"></i>
+                                    </span>
+                                </div>
+                                <div class="text text-center">
+                                    <p class="mb-5">"I was really impressed with how quickly I was able to get an
+                                        appointment through this website! The process was super easy and the staff were
+                                        very friendly. My only issue was that I had to pay a small fee for the
+                                        appointment, which I wasn't expecting. However, the convenience and speed of the
+                                        service made it well worth it. I would definitely use this website again!"</p>
+                                    <p class="name">Jimmy</p>
+                                    <span class="position">CANADA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | MEDMEET
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+    <!-- Modal -->
+
+
+    <script src="{% static 'adminfront/js/jquery.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/popper.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/aos.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/scrollax.min.js' %}"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'adminfront/js/google-map.js' %}"></script>
+    <script src="{% static 'adminfront/js/main.js' %}"></script>
+
+</body>
+
+</html>

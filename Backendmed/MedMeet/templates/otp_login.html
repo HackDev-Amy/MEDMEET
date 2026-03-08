@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Login/Signup - MedMeet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .otp-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .otp-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .phone-column {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .otp-column {
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .phone-column h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .phone-column p {
+            font-size: 14px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .phone-column-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .phone-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .phone-form input {
+            padding: 12px 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .phone-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .phone-form input:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-send-otp {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .btn-send-otp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-send-otp:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .otp-column h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .otp-column .description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .otp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .otp-form input {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .otp-form input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+        }
+
+        .otp-form input[type="text"] {
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .hidden-section {
+            display: none;
+        }
+
+        .hidden-section.show {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-verify {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .btn-verify:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-verify:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .timer {
+            text-align: center;
+            font-size: 12px;
+            color: #667eea;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .resend-link {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .resend-link a {
+            color: #667eea;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .resend-link a:hover {
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .info-box i {
+            color: #667eea;
+            margin-right: 8px;
+        }
+
+        .header-title {
+            text-align: center;
+            padding: 20px 0;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .header-title p {
+            font-size: 12px;
+            color: #666;
+            margin: 5px 0 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .otp-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-column {
+                padding: 30px 20px;
+            }
+
+            .otp-column {
+                padding: 30px 20px;
+            }
+
+            .phone-column h2 {
+                font-size: 24px;
+            }
+
+            .phone-column-icon {
+                font-size: 60px;
+            }
+        }
+
+        .alert-messages {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 400px;
+        }
+
+        .alert-messages .alert {
+            margin-bottom: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Alert Messages -->
+    {% if messages %}
+    <div class="alert-messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="otp-container">
+        <!-- Header -->
+        <div class="header-title">
+            <h1><i class="fas fa-phone"></i> MedMeet Patient Portal</h1>
+            <p>Unified OTP-based Login & Signup</p>
+        </div>
+
+        <div class="otp-wrapper">
+            <!-- LEFT COLUMN: PHONE NUMBER -->
+            <div class="phone-column">
+                <div class="phone-column-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2>Get Started</h2>
+                <p>Enter your phone number and we'll send you an OTP to verify your identity</p>
+
+                <form method="POST" action="{% url 'send_otp' %}" class="phone-form" id="phoneForm">
+                    {% csrf_token %}
+                    <input 
+                        type="tel" 
+                        name="phone_number" 
+                        placeholder="Enter phone number (e.g., +1234567890)" 
+                        pattern="^\+?[0-9]{10,15}$"
+                        required
+                        id="phoneInput"
+                    >
+                    <button type="submit" class="btn-send-otp" id="sendOtpBtn">
+                        <i class="fas fa-paper-plane"></i> Send OTP
+                    </button>
+                </form>
+
+                <div class="info-box" style="margin-top: 20px;">
+                    <i class="fas fa-shield-alt"></i>
+                    <strong>Secure & Quick</strong>
+                    OTP expires in 10 minutes
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: OTP VERIFICATION -->
+            <div class="otp-column">
+                <h3>Verify OTP</h3>
+                <p class="description">Enter the OTP sent to your phone to continue</p>
+
+                {% if request.session.otp_sent %}
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i>
+                        OTP sent to <strong>{{ request.session.temp_phone }}</strong>
+                    </div>
+
+                    <form method="POST" action="{% url 'verify_otp' %}" class="otp-form" id="otpForm">
+                        {% csrf_token %}
+                        <input 
+                            type="hidden" 
+                            name="phone_number" 
+                            value="{{ request.session.temp_phone }}"
+                        >
+                        <input 
+                            type="text" 
+                            name="otp_code" 
+                            placeholder="000000" 
+                            maxlength="6"
+                            pattern="[0-9]{6}"
+                            required
+                            id="otpInput"
+                            inputmode="numeric"
+                        >
+                        <input 
+                            type="text" 
+                            name="name" 
+                            placeholder="Enter your full name (optional)"
+                            id="nameInput"
+                        >
+                        <input 
+                            type="email" 
+                            name="email" 
+                            placeholder="Enter your email (optional)"
+                            id="emailInput"
+                        >
+                        <button type="submit" class="btn-verify" id="verifyBtn">
+                            <i class="fas fa-check-circle"></i> Verify & Continue
+                        </button>
+                    </form>
+
+                    <div class="timer" id="timer">OTP expires in: <span id="timerCount">10:00</span></div>
+
+                    <div class="resend-link">
+                        Didn't receive OTP? 
+                        <a href="{% url 'otp_login' %}" onclick="resetForm(event)">
+                            <i class="fas fa-redo"></i> Resend
+                        </a>
+                    </div>
+
+                    <hr style="margin: 20px 0; opacity: 0.2;">
+
+                    <a href="{% url 'otp_login' %}" class="btn btn-outline-secondary btn-sm w-100" onclick="resetForm(event)">
+                        <i class="fas fa-arrow-left"></i> Change Phone Number
+                    </a>
+                {% else %}
+                    <div class="hidden-section" id="otpSection">
+                        <p style="text-align: center; color: #999; font-size: 14px;">
+                            <i class="fas fa-arrow-left"></i> Enter your phone number on the left to receive OTP
+                        </p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Format phone number input
+        const phoneInput = document.getElementById('phoneInput');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value) {
+                    e.target.value = '+' + value;
+                }
+            });
+        }
+
+        // Format OTP input - only numbers
+        const otpInput = document.getElementById('otpInput');
+        if (otpInput) {
+            otpInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+            });
+        }
+
+        // Timer countdown
+        function startTimer(duration = 600) {
+            let timeLeft = duration;
+            const timerDisplay = document.getElementById('timerCount');
+            
+            if (!timerDisplay) return;
+
+            const timer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerDisplay.textContent = 'Expired';
+                    document.getElementById('verifyBtn').disabled = true;
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Start timer if OTP was sent
+        {% if request.session.otp_sent %}
+        startTimer(600);
+        {% endif %}
+
+        // Reset form
+        function resetForm(e) {
+            e.preventDefault();
+            // Clear session data via redirect to reset
+            window.location.href = '{% url "otp_login" %}';
+        }
+
+        // Phone form submission
+        const phoneForm = document.getElementById('phoneForm');
+        if (phoneForm) {
+            phoneForm.addEventListener('submit', function() {
+                document.getElementById('sendOtpBtn').disabled = true;
+                document.getElementById('sendOtpBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            });
+        }
+
+        // OTP form submission
+        const otpForm = document.getElementById('otpForm');
+        if (otpForm) {
+            otpForm.addEventListener('submit', function() {
+                document.getElementById('verifyBtn').disabled = true;
+                document.getElementById('verifyBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            });
+        }
+
+        // Auto-dismiss alerts after 5 seconds
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

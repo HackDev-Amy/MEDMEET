@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Blogs</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- Link to external CSS if required -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 85%;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        .page-title {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f8d7da;
+            color: #721c24;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #f5c6cb;
+        } */
+
+        .post {
+            background-color: #fff;
+            /* White box for each blog post */
+            border: 1px solid #ddd;
+            /* Light border for separation */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            /* Space between posts */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Soft shadow for depth */
+        }
+
+        .post-header {
+            margin-bottom: 15px;
+        }
+
+        .post-header h1 {
+            font-size: 40px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .post-header .writer {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .photo {
+            text-align: center;
+            /* Center the image */
+            margin: 20px 0;
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+            max-width: 950px;
+            border-radius: 10px;
+        }
+
+        .post-content {
+            font-size: 18px;
+            text-align: center;
+            /* Center content */
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .footer {
+            padding: 20px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title">Our Blogs</h4>
+            </div>
+            <div class="col-sm-8 col-9 text-right m-b-20">
+                <a href="{% url 'add_blog' %}" class="btn btn btn-primary btn-rounded float-right"><i
+                        class="fa fa-plus"></i>
+                    Add Blog</a>
+            </div>
+        </div>
+
+        {% for f in blog_data %}
+        <article class="post">
+            <!-- Post Header: Title and Writer -->
+            <header class="post-header">
+                <h1>{{ f.Btitle }}</h1>
+                <div class="writer">{{ f.Bwriter }}</div> <!-- Writer's name below the title -->
+            </header>
+
+            <!-- Image Section: Centered -->
+            <div class="photo">
+                <a href="#"><img src="{{ f.Bimage.url }}" alt="{{ f.Btitle }}" /></a>
+            </div>
+
+            <!-- Content Section: Centered -->
+            <div class="post-content">
+                <h3>{{ f.Bcontent }}</h3>
+            </div>
+
+            <!-- Delete Button: Positioned at the bottom left -->
+            <div class="footer">
+                <button class="btn" type="submit"><a href="{% url 'delete_blog' del_id=f.id %}">Delete</a></button>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'success' %}
+<script>
+    swal('{{i}}', '', 'success');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}', '', 'error');
+</script>
+{% elif i.tags == 'warning' %}
+<script>
+    swal('{{i}}', '', 'warning');
+</script>
+{% elif i.tags == 'info' %}
+<script>
+    swal('{{i}}', '', 'info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+</html>
+{% endblock %}

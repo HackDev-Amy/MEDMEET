@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>MEDMEET-A COMPLETE HOSPITAL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/jquery.timepicker.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/style.css' %}">
+    <style>
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .search-box {
+            width: 800px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #397e0c;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #00b351;
+        }
+
+        .card {
+            --font-color: #323232;
+            --font-color-sub: #666;
+            --bg-color: #fff;
+            --main-color: #323232;
+            --main-focus: #17b611;
+            width: 280px;
+            height: 350px;
+            background: var(--bg-color);
+            border: 2px solid var(--main-color);
+            box-shadow: 4px 4px var(--main-color);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 20px;
+            gap: 10px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .card:last-child {
+            justify-content: flex-end;
+        }
+
+        .card-img {
+            transition: all 0.5s;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            overflow: hidden;
+            height: 150px;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .card-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-divider {
+            width: 100%;
+            border: 1px solid var(--main-color);
+            border-radius: 50px;
+        }
+
+        .card-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .card-price {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--font-color);
+        }
+
+        .card-price span {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--font-color-sub);
+        }
+
+        .card-btn {
+            height: 35px;
+            width: 35px;
+            border-radius: 5px;
+            border: 2px solid var(--main-color);
+            background-color: var(--bg-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+            padding: 0;
+        }
+
+        .card-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--main-color);
+        }
+
+        .card-btn:hover {
+            border: 2px solid var(--main-focus);
+        }
+
+        .card-btn:hover svg {
+            fill: var(--main-focus);
+        }
+
+        .card-btn:active {
+            transform: translateY(3px);
+        }
+    </style>
+</head>
+
+<body
+    style=" width: 100%; height: 100%; background-image: linear-gradient(#ffffff 1.1rem, #ccc 1.2rem); background-size: 100% 1.2rem;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Med_Meet' %}">MED<span>MEET</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{% url 'Med_Meet' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item "><a href="{% url 'About_med' %}" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="{% url 'Blog_med' %}" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="{% url 'Contacts_med' %}" class="nav-link">Contact</a></li>
+                </ul>
+                <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                    <li><a class="nav-link" href="#"><img src="{% static 'adminfront/images/user.svg' %}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home-slider owl-carousel">
+        <div class="slider-item bread-item" style="background-image: url('{% static 'adminfront/images/bg_1.jpg' %}');"
+            data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container" data-scrollax-parent="true">
+                <div class="row slider-text align-items-end">
+                    <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                        <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span
+                                class="mr-2"><a href="{% url 'Med_Meet' %}">Home</a></span>* <span>Pharmacy</span></p>
+                        <h1 style="font-weight: 600; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: #0550a5;"
+                            class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">MED PHARMACY
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br><br>
+
+    <section>
+        <div class="search-container">
+            <form action="#">
+                <input type="text" class="search-box" placeholder="Search..." name="search">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div><br><br>
+
+        <div class="row">
+            {% for m in medicine_data %}
+            <div class="col-md-2 mb-4" style="margin-left: 55px;">
+                <div class="card">
+                    <div class="card-img">
+                        <a href="#">
+                            {% if m.Medimage %}
+                            <img src="{{m.Medimage.url}}" alt="Image" width="100%" height="150px">
+                            {% else %}
+                            <div style="width: 100%; height: 150px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999;">
+                                <span>No Image</span>
+                            </div>
+                            {% endif %}
+                        </a>
+                    </div>
+                    <span style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align: center;">{{m.Medname}}</span>
+                    <hr class="card-divider">
+                    <div class="card-footer">
+                        <div class="card-price"><del>95.00</del>/{{m.Medprice}}</div>
+                        <button class="card-btn">
+                            <a href="{% url 'Display_pharm' single_id=m.id %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-capsule-pill" viewBox="0 0 16 16">
+                                    <path d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8m-.5 1.042a3 3 0 0 0 0 5.917zm1 5.917a3 3 0 0 0 0-5.917z" />
+                                </svg>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section><br><br>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | MEDMEET
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+    <script src="{% static 'adminfront/js/jquery.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/popper.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/aos.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.animateNumber.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'adminfront/js/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'adminfront/js/scrollax.min.js' %}"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'adminfront/js/google-map.js' %}"></script>
+    <script src="{% static 'adminfront/js/main.js' %}"></script>
+
+</body>
+
+</html>

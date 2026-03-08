@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Add Hospital</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form lass="forms-sample" method="POST" action="{% url 'save_hospital' %}"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Hospital Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Hname">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Country<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Hcountry">
+                                    <option>-- Select --</option>
+                                    {% for c in get_country %}
+                                    <option>{{c.CON_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department-I<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Hdept1">
+                                    <option>-- Select --</option>
+                                    {% for g in get_department %}
+                                    <option>{{g.DepName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department-II<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Hdept2">
+                                    <option>-- Select --</option>
+                                    {% for g in get_department %}
+                                    <option>{{g.DepName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department-III<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Hdept3">
+                                    <option>-- Select --</option>
+                                    {% for g in get_department %}
+                                    <option>{{g.DepName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department-IV<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Hdept4">
+                                    <option>-- Select --</option>
+                                    {% for g in get_department %}
+                                    <option>{{g.DepName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department-V<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Hdept5">
+                                    <option>-- Select --</option>
+                                    {% for g in get_department %}
+                                    <option>{{g.DepName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department-VI<span class="text-danger">*</span></label>
+                                <select class="form-control" name="Hdept6">
+                                    <option>-- Select --</option>
+                                    {% for g in get_department %}
+                                    <option>{{g.DepName}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Number <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Hphone">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Email <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Hemail">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Website <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Hwebsite">
+                            </div>
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn">Save</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>
+{% endblock %}

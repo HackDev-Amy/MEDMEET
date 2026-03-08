@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor</title>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="page-title">Edit Profile</h4>
+        </div>
+    </div>
+    <form lass="forms-sample" method="POST" action="{% url 'updatedoctor' update_id=data_edit.id %}"
+        enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Hospital<span class="text-danger">*</span></label>
+                    <select class="form-control" name="Doc_Hospital" id="hospital-dropdown">
+                        <option>{{data_edit.D_hospital}}</option>
+                        {% for e in doctor_data %}
+                        <option>{{e.HosName}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Department dropdown -->
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Department<span class="text-danger">*</span></label>
+                    <select class="form-control" name="Doc_Department" id="department-dropdown">
+                        <option>{{data_edit.D_department}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Avatar<span class="text-danger">*</span></label>
+                    <div class="profile-upload">
+                        <div class="upload-img">
+                            <img alt="no image" src="{{data_edit.D_image.url}}" width="70px" height="70px">
+                        </div>
+                        <div class="upload-input">
+                            <input type="file" class="form-control" name="Doc_Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Doctor Name <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text" name="Doc_Name" required value="{{data_edit.D_name}}">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Email <span class="text-danger">*</span></label>
+                    <input class="form-control" type="email" name="Doc_Email" required value="{{data_edit.D_email}}">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Phone <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text" name="Doc_Phone" required value="{{data_edit.D_phone}}">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Age<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control " name="Doc_Age" required value="{{data_edit.D_age}}">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Gender<span class="text-danger">*</span></label>
+                    <select class="form-control" name="Doc_Gender" required>
+                        <option>{{data_edit.D_gender}}</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Country<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control " name="Doc_Country" required
+                        value="{{data_edit.D_country}}">
+                </div>
+            </div>
+        </div>
+        <!-- Additional form fields for the user (like bio or other details) -->
+        <div class="form-group">
+            <label for="userBio">Your Bio <span class="text-danger">*</span></label>
+            <textarea id="userBio" class="form-control" name="Doc_Bio" rows="3" placeholder="Enter your bio here"
+                required>{{data_edit.D_bio}}</textarea>
+        </div>
+        <div class="m-t-20 text-center">
+            <button class="btn btn-primary submit-btn">Save
+                Profile</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-primary submit-btn"><a href="#" style="color: #ffff
+            ;">Send Mail</a></button>
+        </div>
+    </form>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#hospital-dropdown').on('change', function () {
+            var hospitalName = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "gets_departments" %}',
+                data: {
+                    'hospital_name': hospitalName,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function (response) {
+                    $('#department-dropdown').empty();
+                    $.each(response.departments, function (index, department) {
+                        $('#department-dropdown').append('<option>' + department + '</option>');
+                    });
+                },
+                error: function () {
+                    alert('Error: Could not retrieve departments.');
+                }
+            });
+        });
+    });
+</script>
+
+</html>
+{% endblock %}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+         
+       
+        /* Profile Card Styles */
+               /* Profile Card Styles */
+               .profile-card {
+            width: 100%; /* Increased width to 600px */
+            height: 220px;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            margin: 0px;
+            border: 1px solid #ddd;
+        }
+
+        /* Left Section - Avatar, Name, Department, Country */
+        .left-section {
+            flex: 1;
+            text-align: center;
+            justify-content: center;
+            padding: 10px 50px 20px;
+        }
+
+        /* Avatar Styles */
+        #avatar1 {
+            width: 200px; /* Avatar size */
+            height: 180px;
+            border-radius: 0%;
+            overflow: hidden;
+            border: 2px solid black;
+            margin-bottom: 20px;
+            margin-top: 15px;
+            margin-left: 15px;
+            
+        }
+
+        #avatar1 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Left Section Text */
+        .left-section h2, .left-section h5, .left-section small {
+            margin: 5px 0;
+            margin-top: 21px;
+        
+        }
+
+        /* Right Section - Contact Info */
+        .right-section {
+            flex: 1.5; /* Give more space to the right section */
+            padding: 20px;
+            border-left: 2px solid #ddd; /* Separator line */
+        }
+
+        .right-section h5 {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .right-section p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* Separator line */
+        .separator {
+            border-top: 2px dotted #ddd;
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-4 col-3">
+            <h4 class="page-title" style="font-size: 25px;"> Our Doctors</h4>
+        </div>
+        <div class="col-sm-8 col-9 text-right m-b-20">
+            <a href="{% url 'add_doctor' %}" class="btn btn btn-primary btn-rounded float-right"><i
+                    class="fa fa-plus"></i>
+                Add Doctor</a>
+        </div>
+    </div>
+    <div class="row doctor-grid">
+        {% for k in doctor_data %}
+        <div class="col-md-4 col-sm-4 col-lg-3">
+            <div class="profile-widget">
+                <div class="doctor-img">
+                    <a class="avatar" href="#"><img alt="" src="{{k.D_image.url}}"></a>
+                </div>
+                <!-- <div class="dropdown profile-action">         #dropdown button with three dots on profile card
+                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                            class="fa fa-ellipsis-v"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="edit-doctor.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_doctor"><i
+                                class="fa fa-trash-o m-r-5"></i> Delete</a>
+                    </div>
+                </div> -->
+                <h4 class="doctor-name text-ellipsis"><a href="profile.html" style="text-decoration: none; font-size: large;">{{k.D_name}}</a></h4>
+                <div class="doc-prof">{{k.D_department}}</div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorModal{{ forloop.counter }}">
+                    View Profile
+                </button>
+            </div>
+        </div>
+    
+        <!-- Modal for each doctor -->
+        <div class="modal fade" id="doctorModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Doctor's Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="profile-card">
+                                <div class="profile-header">
+                                    <div id="avatar1">
+                                        <img src="{{k.D_image.url}}" alt="Avatar" id="avatar-image">
+                                    </div>
+                                </div>
+                                <div class="left-section">
+                                    <h2>{{k.D_name}}</h2><span>(<small>{{k.D_age}}</small>)</span>
+                                    <small>{{k.D_department}}</small>
+                                </div>
+                                <div class="separator"></div>
+                                <div class="right-section">
+                                    <h5>Contact Information</h5>
+                                    <p><strong>Mobile:</strong> {{k.D_phone}}</p>
+                                    <p><strong>Email:</strong> {{k.D_email}}</p>
+                                    <p><strong>Hospital:</strong> {{k.D_hospital}}</p>
+                                    <p><strong>Country:</strong> {{k.D_country}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary"><a href="{% url 'Doctor_edit' edit_id=k.id %}" style="text-decoration: none;">Edit</a></button>
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><a href="{% url 'delete_doctor' del_id=k.id %}" style="text-decoration: none;">Delete</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Doctor's Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="profile-card">
+                            <!-- Profile Header -->
+                            <div class="profile-header">
+                                <div id="avatar1">
+                                    <img src="./cam.jpg" alt="Avatar" id="avatar-image">
+                                </div>
+                            </div>
+                
+                            <!-- Left Section (Name, Department, Country) -->
+                            <div class="left-section">
+                                <h2>Name</h2>
+                                <small>Department</small>
+                            </div>
+                
+                            <!-- Separator Line -->
+                            <div class="separator"></div>
+                
+                            <!-- Right Section (Mobile, Email, etc.) -->
+                            <div class="right-section">
+                                <h5>Contact Information</h5>
+                                <p><strong>Mobile:</strong> +1234567890</p>
+                                <p><strong>Email:</strong> example@example.com</p>
+                                <p><strong>Hospital:</strong> City Hospital</p>
+                                <p><strong>Department:</strong> Cardiology</p>
+                                <p><strong>Country:</strong> USA</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script>
+        // Bootstrap 5: Using JavaScript to open modal
+        const openModalButton = document.getElementById('openModal');
+        const modalElement = document.getElementById('exampleModalCenter');
+        const modal = new bootstrap.Modal(modalElement);
+
+        openModalButton.addEventListener('click', function () {
+            modal.show();
+        });
+    </script>
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'success' %}
+<script>
+    swal('{{i}}', '', 'success');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}', '', 'error');
+</script>
+{% elif i.tags == 'warning' %}
+<script>
+    swal('{{i}}', '', 'warning');
+</script>
+{% elif i.tags == 'info' %}
+<script>
+    swal('{{i}}', '', 'info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+</html>
+{% endblock %}

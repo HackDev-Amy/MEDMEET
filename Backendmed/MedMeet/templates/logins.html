@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>MEDMEET</title>
+  <link rel="stylesheet" href="{% static 'Logins/css/style.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+			<div class="signup">
+				<form action="{% url 'SaveSignUp' %}" onsubmit="passwordCheck()" method="POST">
+                    {% csrf_token %}
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="txt" placeholder="Name" required="">
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button>Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form method="POST" action="{% url 'UserLogin' %}">
+                    {% csrf_token %}
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button>Login</button>
+				</form>
+			</div>
+	</div>
+</body>
+</html>
+<!-- partial -->
+<script>
+    function passwordCheck() {
+        un = document.myform.name.value;
+        pswd = document.myform.pass1.value;
+        cpswd = document.myform.re_pass.value;
+
+        if (un == "" | un == null) {
+            alert("Username cant be null..!")
+        }
+        else if (pswd.length < 6) {
+            alert("Password must be atleast 6 characters long..!")
+        }
+        else if (pswd != cpswd) {
+            alert("Password doesnt match !")
+        }
+    }
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+    {% if i.tags == 'success' %}
+    <script>
+        swal('{{i}}', '', 'success');
+    </script>
+    {% elif i.tags == 'error' %}
+    <script>
+        swal('{{i}}', '', 'error');
+    </script>
+    {% elif i.tags == 'warning' %}
+    <script>
+        swal('{{i}}', '', 'warning');
+    </script>
+
+    {% else %}
+    <script>
+        swal('{{i}}', '', 'info');
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+</body>
+</html>

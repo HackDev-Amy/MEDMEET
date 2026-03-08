@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>MEDMEET-A COMPLETE HOSPITAL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/jquery.timepicker.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'adminfront/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'adminfront/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* From Uiverse.io by G4b413l */
+        .group {
+            position: relative;
+        }
+
+        .input {
+            font-size: 16px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 450px;
+            border: none;
+            border-bottom: 1px solid #515151;
+            background: transparent;
+        }
+
+        .input:focus {
+            outline: none;
+        }
+
+        label {
+            color: #999;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 5px;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        .input:focus~label,
+        .input:valid~label {
+            top: -10px;
+            font-size: 14px;
+            color: #5264AE;
+        }
+
+        .bar {
+            position: relative;
+            display: block;
+            width: 450px;
+        }
+
+        .bar:before,
+        .bar:after {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 1px;
+            position: absolute;
+            background: #5264AE;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        .bar:before {
+            left: 50%;
+        }
+
+        .bar:after {
+            right: 50%;
+        }
+
+        .input:focus~.bar:before,
+        .input:focus~.bar:after {
+            width: 50%;
+        }
+
+        .highlight {
+            position: absolute;
+            height: 60%;
+            width: 450px;
+            top: 25%;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .input:focus~.highlight {
+            animation: inputHighlighter 0.3s ease;
+        }
+
+        @keyframes inputHighlighter {
+            from {
+                background: #5264AE;
+            }
+
+            to {
+                width: 0;
+                background: transparent;
+            }
+        }
+
+        /* From Uiverse.io by alexmaracinaru */
+        .cta {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .cta span {
+            padding-bottom: 7px;
+            letter-spacing: 4px;
+            font-size: 14px;
+            padding-right: 15px;
+            text-transform: uppercase;
+        }
+
+        .cta svg {
+            transform: translateX(-8px);
+            transition: all 0.3s ease;
+        }
+
+        .cta:hover svg {
+            transform: translateX(0);
+        }
+
+        .cta:active svg {
+            transform: scale(0.9);
+        }
+
+        .hover-underline-animation {
+            position: relative;
+            color: black;
+            padding-bottom: 20px;
+        }
+
+        .hover-underline-animation:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #000000;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .cta:hover .hover-underline-animation:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* ----------div arrow button ---------------- */
+        /* From Uiverse.io by ryota1231 */
+        .animated-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 16px 36px;
+            border: 4px solid;
+            border-color: transparent;
+            font-size: 16px;
+            background-color: ;
+            border-radius: 100px;
+            font-weight: 600;
+            color: #1f387e;
+            box-shadow: 0 0 0 2px #ffffff;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button svg {
+            position: absolute;
+            width: 24px;
+            fill: #1f387e;
+            z-index: 9;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button .arr-1 {
+            right: 16px;
+        }
+
+        .animated-button .arr-2 {
+            left: -25%;
+        }
+
+        .animated-button .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: #c5e5e4;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button .text {
+            position: relative;
+            z-index: 1;
+            transform: translateX(-12px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button:hover {
+            box-shadow: 0 0 0 12px transparent;
+            color: #212121;
+            border-radius: 12px;
+        }
+
+        .animated-button:hover .arr-1 {
+            right: -25%;
+        }
+
+        .animated-button:hover .arr-2 {
+            left: 16px;
+        }
+
+        .animated-button:hover .text {
+            transform: translateX(12px);
+        }
+
+        .animated-button:hover svg {
+            fill: #1f387e;
+        }
+
+        .animated-button:active {
+            scale: 0.95;
+            box-shadow: 0 0 0 4px greenyellow;
+        }
+
+        .animated-button:hover .circle {
+            width: 220px;
+            height: 220px;
+            opacity: 1;
+        }
+
+        /* ---------------modal button----------------- */
+        /* From Uiverse.io by Vraj747 */
+        .wave-group {
+            position: relative;
+        }
+
+        .wave-group .input {
+            font-size: 16px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 450px;
+            border: none;
+            border-bottom: 1px solid #515151;
+            background: transparent;
+        }
+
+        .wave-group .input:focus {
+            outline: none;
+        }
+
+        .wave-group .label {
+            color: #999;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            display: flex;
+        }
+
+        .wave-group .label-char {
+            transition: 0.2s ease all;
+            transition-delay: calc(var(--index) * 0.05s);
+        }
+
+        .wave-group .input:focus~label .label-char,
+        .wave-group .input:valid~label .label-char {
+            transform: translateY(-20px);
+            font-size: 14px;
+            color: #5264ae;
+        }
+
+        .wave-group .bar {
+            position: relative;
+            display: block;
+            width: 450px;
+        }
+
+        .wave-group .bar:before,
+        .wave-group .bar:after {
+            content: "";
+            height: 2px;
+            width: 0;
+            bottom: 1px;
+            position: absolute;
+            background: #5264ae;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        .wave-group .bar:before {
+            left: 50%;
+        }
+
+        .wave-group .bar:after {
+            right: 50%;
+        }
+
+        .wave-group .input:focus~.bar:before,
+        .wave-group .input:focus~.bar:after {
+            width: 50%;
+        }
+
+        /* ------------------------------------------------ */
+    </style>
+</head>
+
+<body
+    style=" width: 100%; height: 100%; background-image: linear-gradient(#ffffff 1.1rem, #ccc 1.2rem); background-size: 100% 1.2rem;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Med_Meet' %}" style="font-size: 30px;">MED<span>MEET</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active "><a href="{% url 'Med_Meet' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'About_med' %}" class="nav-link">About</a></li>
+                    <li class="nav-item "><a href="{% url 'Blog_med' %}" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="{% url 'Contacts_med' %}" class="nav-link">Contact</a></li>
+                </ul>
+                <!-- -------------------login icon --------------- -->
+                <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                    <!-- Profile Icon with Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'adminfront/images/user.svg' %}" alt="Profile" class="profile-icon">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if request.session.patient_email or request.session.patient_phone %}
+                            <li><a href="#" class="dropdown-item" style="color: black;">
+                                <i class="fas fa-user-circle"></i> {{ request.session.patient_name|default:"Patient" }}
+                            </a></li>
+                            <li><small class="dropdown-item" style="color: #666;">{% if request.session.patient_email %}{{ request.session.patient_email }}{% elif request.session.patient_phone %}{{ request.session.patient_phone }}{% endif %}</small></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'patient_logout' %}">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a></li>
+                            {% elif request.session.email %}
+                            <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="dropdown-item"
+                                    style="color: black;"><i class="fas fa-user-circle"></i> {{request.session.email}}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'userLogout' %}">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'otp_login' %}">
+                                <i class="fas fa-phone"></i> Login / Signup
+                            </a></li>
+                            {% endif %}
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
+    <section class="home-slider owl-carousel">
+        <div class="slider-item" style="background-image: url('{% static 'adminfront/images/NEW1.jpg' %}');">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text align-items-center" data-scrollax-parent="true">
+                    <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                        <!-- <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Modern
+                            Dentistry in a Calm and Relaxed Environment</h1>
+                        <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">A small river
+                            named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-item" style="background-image: url('{% static 'adminfront/images/NEW6.jpg' %}');">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text align-items-center" data-scrollax-parent="true">
+                    <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-item" style="background-image: url('{% static 'adminfront/images/poster2.jpg' %}');">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text align-items-center" data-scrollax-parent="true">
+                    <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ---------------------------------------------------------3 division ----------------------------------------------------------- -->
+    <section class="ftco-intro">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-6 color-3 p-4">
+                    <h3 class="mb-2">MAKE AN APPOINTMENT</h3>
+                    <form action="#" class="appointment-form">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>"Experience seamless healthcare,
+                                    anytime, anywhere.
+                                    Breaking geographical barriers, we bring expert care to you.
+                                    Access quality healthcare without limitations.
+                                    Our comprehensive and convenient medical solutions put you first.
+                                    Transforming healthcare, one connection at a time."</p>
+                                <button class="cta">
+                                    <span class="hover-underline-animation"> <a data-toggle="modal"
+                                            data-target="#modalRequest"> MAKE APPOINTMENT</a> </span>
+                                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10"
+                                        viewBox="0 0 46 16">
+                                        <path id="Path_10" data-name="Path 10"
+                                            d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                            transform="translate(30)"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- ---------------------------------------------------------------------------------------------------------- -->
+                <div class="col-md-3 color-1 p-4">
+                    <h3 class="mb-4">OUR HOSPITALS</h3>
+                    <p>"Discover nearby hospitals and medical centers, providing you with quality care when you need it
+                        most."</p>
+                    <!-- ------------------------------------------------------------------------------------------------------ -->
+                    <button class="cta">
+                        <span class="hover-underline-animation"><a href="{% url 'Hospital_med' %}"
+                                style="color: black;">HOSPITALS</a> </span>
+                        <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10"
+                            viewBox="0 0 46 16">
+                            <path id="Path_10" data-name="Path 10"
+                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                transform="translate(30)"></path>
+                        </svg>
+                    </button>
+
+                </div>
+                <div class="col-md-3 color-2 p-4">
+                    <h3 class="mb-4">PHARMACY</h3>
+                    <p>"Your trusted online pharmacy, delivering quality medications and expert care to your
+                        doorstep."</p>
+                    <!-- <p class="openinghours d-flex">
+                        <span>Saturday</span>
+                        <span>10:00 - 17:00</span>
+                    </p>
+                    <p class="openinghours d-flex">
+                        <span>Sunday</span>
+                        <span>10:00 - 16:00</span>
+                    </p> -->
+                    <button class="cta">
+                        <span class="hover-underline-animation"><a href="{% url 'Pharmacy_med' %}"
+                                style="color: black;">MED STORE</a> </span>
+                        <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10"
+                            viewBox="0 0 46 16">
+                            <path id="Path_10" data-name="Path 10"
+                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                transform="translate(30)"></path>
+                        </svg>
+                    </button>
+                </div>
+                <!-- --------------------------------------------------------------------- -->
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------footer------------------------------------------------------ -->
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | MEDMEET
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalRequestLabel">Make an Appointment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'Saveappointments' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="wave-group">
+                            <select class="form-control" name="country" id="country-dropdown">
+                                <option>Select Country</option>
+                                {% for C in country_appoint %}
+                                <option value="{{ C.CON_name }}">{{ C.CON_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="bar"></span>
+                        </div><br>
+                        <div class="wave-group">
+                            <select class="form-control" name="hospital" id="hospital-dropdown">
+                                <option>Select Hospital</option>
+                            </select>
+                            <span class="bar"></span>
+                        </div><br>
+                        <div class="wave-group">
+                            <select class="form-control" id="department-dropdown" name="department">
+                                <option>Select Department</option>
+                            </select>
+                            <span class="bar"></span>
+                        </div><br>
+                        <div class="wave-group">
+                            <select class="form-control" id="doctor-dropdown" name="doctor">
+                                <option>Select Doctor</option>
+                            </select>
+                            <span class="bar"></span>
+                        </div><br>
+                        <!-- -----------------------------  -->
+                        <div class="wave-group">
+                            <input class="input" type="text" id="appointment_name" required="" name="appoint_name" />
+                            <span class="bar"></span>
+                            <label class="label">
+                                <span style="--index: 0" class="label-char">F</span>
+                                <span style="--index: 1" class="label-char">U</span>
+                                <span style="--index: 2" class="label-char">L</span>
+                                <span style="--index: 2" class="label-char">L</span>
+                                <span style="--index: 3" class="label-char">N</span>
+                                <span style="--index: 3" class="label-char">A</span>
+                                <span style="--index: 3" class="label-char">M</span>
+                                <span style="--index: 3" class="label-char">E</span>
+                            </label>
+                        </div><br>
+                        <div class="wave-group">
+                            <input class="input" type="text" id="appointment_email" required="" name="appoint_email" />
+                            <span class="bar"></span>
+                            <label class="label">
+                                <span style="--index: 0" class="label-char">E</span>
+                                <span style="--index: 1" class="label-char">M</span>
+                                <span style="--index: 2" class="label-char">A</span>
+                                <span style="--index: 2" class="label-char">I</span>
+                                <span style="--index: 3" class="label-char">L</span>
+                            </label>
+                        </div><br>
+                        <div class="group">
+                            <input required="" type="datetime-local" class="input" name="datetimes">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                        </div><br>
+                        <div class="wave-group">
+                            <input class="input" type="text" id="appointment_message" required="" name="message" />
+                            <span class="bar"></span>
+                            <label class="label">
+                                <span style="--index: 0" class="label-char">M</span>
+                                <span style="--index: 1" class="label-char">E</span>
+                                <span style="--index: 2" class="label-char">S</span>
+                                <span style="--index: 2" class="label-char">S</span>
+                                <span style="--index: 3" class="label-char">A</span>
+                                <span style="--index: 3" class="label-char">G</span>
+                                <span style="--index: 3" class="label-char">E</span>
+                            </label>
+                        </div><br><br>
+                        <div class="form-group">
+                            <button class="animated-button" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                    </path>
+                                </svg>
+                                <span class="text">C R E A T E</span>
+                                <span class="circle"></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------ -->
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Your Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                                <h4>Appointment</h4>
+                                <tr>
+                                    <th scope="col">Hospital & Country</th>
+                                    <th scope="col">Doctor</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for a in appointment_data %}
+                                <tr>
+                                    <th>{{a.customer_Hospital}},{{a.customer_Country}}</th>
+                                    <td>{{a.customer_Doctor}}</td>
+                                    <td>{{a.customer_date}}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-outline-danger">Cancel</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ---------------------------------------------------------------------------------------------------------- -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Trigger the Ajax call when the country is selected
+                $('#country-dropdown').on('change', function () {
+                    const countrycategory = $(this).val();  // Get the selected country
+
+                    if (countrycategory) {
+                        $.ajax({
+                            url: "{% url 'get_hospital_by_Country' %}",
+                            data: { 'country_category': countrycategory },
+                            method: "GET",
+                            success: function (data) {
+                                let hospitalDropdown = $('#hospital-dropdown');
+                                hospitalDropdown.empty();  // Clear existing options
+                                hospitalDropdown.append('<option>-- Select --</option>');  // Add default option
+
+                                // Add the options dynamically
+                                $.each(data, function (index, hospital) {
+                                    hospitalDropdown.append(`<option value="${hospital.HosName}">${hospital.HosName}</option>`);
+                                });
+                            }
+                        });
+                    }
+                });
+
+
+                // Trigger the Ajax call when the hospital is selected
+                $('#hospital-dropdown').on('change', function () {
+                    const hospitalName = $(this).val();  // Get the selected hospital
+                    if (hospitalName) {
+                        $.ajax({
+                            url: "{% url 'get_departments' %}",
+                            data: { 'hospital_name': hospitalName },
+                            method: "GET",
+                            success: function (data) {
+                                let departmentDropdown = $('#department-dropdown');
+                                departmentDropdown.empty();  // Clear existing options
+                                departmentDropdown.append('<option>-- Select --</option>');  // Add default option
+
+                                // Add the options dynamically
+                                $.each(data.departments, function (index, department) {
+                                    departmentDropdown.append(`<option value="${department}">${department}</option>`);
+                                });
+                            }
+                        });
+                    }
+                });
+
+                $('#department-dropdown').on('change', function () {
+                    const hospitalName = $('#hospital-dropdown').val();  // Get the selected hospital
+                    const departmentName = $(this).val();  // Get the selected department
+
+                    if (hospitalName && departmentName) {
+                        $.ajax({
+                            url: "{% url 'get_doctors' %}",
+                            data: {
+                                'hospital_name': hospitalName,
+                                'department_name': departmentName
+                            },
+                            method: "GET",
+                            success: function (data) {
+                                let doctorDropdown = $('#doctor-dropdown');
+                                doctorDropdown.empty();  // Clear existing options
+                                doctorDropdown.append('<option>-- Select --</option>');  // Add default option
+
+                                // Add the options dynamically
+                                $.each(data.doctors, function (index, doctor) {
+                                    doctorDropdown.append(`<option value="${doctor.D_name}">${doctor.D_name}</option>`);
+                                });
+                            },
+                            error: function () {
+                                alert('Failed to fetch doctors.');
+                            }
+                        });
+                    } else {
+                        alert('Please select both hospital and department.');
+                    }
+                });
+
+            });
+        </script>
+
+
+        <script src="{% static 'adminfront/js/jquery.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/jquery-migrate-3.0.1.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/popper.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/jquery.easing.1.3.js' %}"></script>
+        <script src="{% static 'adminfront/js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/jquery.stellar.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/aos.js' %}"></script>
+        <script src="{% static 'adminfront/js/jquery.animateNumber.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static 'adminfront/js/jquery.timepicker.min.js' %}"></script>
+        <script src="{% static 'adminfront/js/scrollax.min.js' %}"></script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="{% static 'adminfront/js/google-map.js' %}"></script>
+        <script src="{% static 'adminfront/js/main.js' %}"></script>
+
+</body>
+
+</html>

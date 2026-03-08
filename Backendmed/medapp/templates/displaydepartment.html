@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-4 col-3">
+            <h4 class="page-title" style="font-size: 25px;">Department</h4>
+        </div>
+        <div class="col-sm-8 col-9 text-right m-b-20">
+            <a href="{% url 'add_department' %}" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i>
+                Add Department</a>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="card-box">
+            <div class="card-block ">
+                <div class="table-responsive">
+                    <table class="table table-bordered m-b-20">
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>Timings</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in Department_data %}
+                            <tr>
+                                <td>{{d.DepName}}</td>
+                                <td>{{d.DepTime}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-danger"
+                                        href="{% url 'delete_department' del_id=d.id %}">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'success' %}
+<script>
+    swal('{{i}}', '', 'success');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+    swal('{{i}}', '', 'error');
+</script>
+{% elif i.tags == 'warning' %}
+<script>
+    swal('{{i}}', '', 'warning');
+</script>
+{% elif i.tags == 'info' %}
+<script>
+    swal('{{i}}', '', 'info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</html>
+{% endblock %}
